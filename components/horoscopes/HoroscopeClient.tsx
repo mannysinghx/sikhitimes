@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import { StaggerContainer, StaggerItem, HoverCard } from "@/components/ui/motion";
 
 const ZODIAC_SIGNS = [
   { sign: "aries",       name: "Aries",       symbol: "♈", dates: "Mar 21 – Apr 19", gurmukhi: "ਮੇਖ" },
@@ -45,26 +46,29 @@ export default function HoroscopeClient() {
       </div>
 
       {/* Zodiac grid */}
-      <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-4">
+      <StaggerContainer className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-4">
         {ZODIAC_SIGNS.map(({ sign, name, symbol, dates, gurmukhi }) => (
-          <div
-            key={sign}
-            className="bg-white rounded-xl border border-gray-100 shadow-sm hover:shadow-md hover:border-amber-200 transition-all p-4 cursor-pointer group"
-          >
-            <div className="text-3xl mb-2">{symbol}</div>
-            <div>
-              <h3 className="font-bold text-gray-900 group-hover:text-amber-800 transition-colors">
-                {name}
-              </h3>
-              <p className="text-xs text-amber-700 font-medium">{gurmukhi}</p>
-              <p className="text-xs text-gray-400 mt-0.5">{dates}</p>
-            </div>
-            <p className="text-xs text-gray-500 mt-3 leading-relaxed line-clamp-3">
-              {PLACEHOLDER}
-            </p>
-          </div>
+          <StaggerItem key={sign}>
+            <HoverCard>
+              <div
+                className="bg-white rounded-xl border border-gray-100 shadow-sm hover:shadow-md hover:border-amber-200 transition-all p-4 cursor-pointer group"
+              >
+                <div className="text-3xl mb-2">{symbol}</div>
+                <div>
+                  <h3 className="font-bold text-gray-900 group-hover:text-amber-800 transition-colors">
+                    {name}
+                  </h3>
+                  <p className="text-xs text-amber-700 font-medium">{gurmukhi}</p>
+                  <p className="text-xs text-gray-400 mt-0.5">{dates}</p>
+                </div>
+                <p className="text-xs text-gray-500 mt-3 leading-relaxed line-clamp-3">
+                  {PLACEHOLDER}
+                </p>
+              </div>
+            </HoverCard>
+          </StaggerItem>
         ))}
-      </div>
+      </StaggerContainer>
     </>
   );
 }

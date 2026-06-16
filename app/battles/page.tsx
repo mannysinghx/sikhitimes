@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { SIKH_BATTLES } from "@/data/battles";
+import { FadeIn, StaggerContainer, StaggerItem, HoverCard } from "@/components/ui/motion";
 
 export const metadata: Metadata = {
   title: "Sikh Battles & Military History",
@@ -33,42 +34,48 @@ export default function BattlesPage() {
   return (
     <div className="max-w-7xl mx-auto px-4 sm:px-6 py-10">
       {/* Header */}
-      <div className="text-center mb-10">
-        <h1 className="text-3xl sm:text-4xl font-bold text-gray-900 mb-3">
-          Sikh Military History
-        </h1>
-        <p className="text-gray-600 max-w-2xl mx-auto leading-relaxed">
-          From the first battle at Bhangani in 1688 to the legendary last stand at Saragarhi in 1897,
-          Sikhs have demonstrated unparalleled courage in defence of their faith and people.
-        </p>
-      </div>
+      <FadeIn>
+        <div className="text-center mb-10">
+          <h1 className="text-3xl sm:text-4xl font-bold text-gray-900 mb-3">
+            Sikh Military History
+          </h1>
+          <p className="text-gray-600 max-w-2xl mx-auto leading-relaxed">
+            From the first battle at Bhangani in 1688 to the legendary last stand at Saragarhi in 1897,
+            Sikhs have demonstrated unparalleled courage in defence of their faith and people.
+          </p>
+        </div>
+      </FadeIn>
 
       {/* Stats bar */}
-      <div className="grid grid-cols-3 gap-4 mb-8">
-        {[
-          { label: "Total Battles", value: stats.total },
-          { label: "Victories", value: stats.victories, color: "text-green-700" },
-          { label: "Defeats", value: stats.defeats, color: "text-red-700" },
-        ].map(({ label, value, color }) => (
-          <div key={label} className="bg-white rounded-xl border border-gray-100 shadow-sm p-4 text-center">
-            <div className={`text-3xl font-bold ${color || "text-amber-800"}`}>{value}</div>
-            <div className="text-xs text-gray-500 mt-1">{label}</div>
-          </div>
-        ))}
-      </div>
+      <FadeIn delay={0.1}>
+        <div className="grid grid-cols-3 gap-4 mb-8">
+          {[
+            { label: "Total Battles", value: stats.total },
+            { label: "Victories", value: stats.victories, color: "text-green-700" },
+            { label: "Defeats", value: stats.defeats, color: "text-red-700" },
+          ].map(({ label, value, color }) => (
+            <div key={label} className="bg-white rounded-xl border border-gray-100 shadow-sm p-4 text-center">
+              <div className={`text-3xl font-bold ${color || "text-amber-800"}`}>{value}</div>
+              <div className="text-xs text-gray-500 mt-1">{label}</div>
+            </div>
+          ))}
+        </div>
+      </FadeIn>
 
       {/* Legend */}
-      <div className="flex flex-wrap gap-3 mb-8">
-        {categories.map(cat => {
-          const m = CATEGORY_META[cat];
-          return (
-            <div key={cat} className="flex items-center gap-1.5 text-xs text-gray-600">
-              <span className={`w-2.5 h-2.5 rounded-full ${m.dotColor}`} />
-              {m.label}
-            </div>
-          );
-        })}
-      </div>
+      <FadeIn delay={0.15}>
+        <div className="flex flex-wrap gap-3 mb-8">
+          {categories.map(cat => {
+            const m = CATEGORY_META[cat];
+            return (
+              <div key={cat} className="flex items-center gap-1.5 text-xs text-gray-600">
+                <span className={`w-2.5 h-2.5 rounded-full ${m.dotColor}`} />
+                {m.label}
+              </div>
+            );
+          })}
+        </div>
+      </FadeIn>
 
       {/* Battles by category */}
       {categories.map(cat => {
@@ -82,56 +89,61 @@ export default function BattlesPage() {
               <h2 className="text-xl font-bold text-gray-900">{m.label}</h2>
               <span className="hidden sm:inline text-sm text-gray-400">— {m.desc}</span>
             </div>
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
+            <StaggerContainer className="grid grid-cols-1 lg:grid-cols-2 gap-4">
               {battles.map(battle => (
-                <article key={battle.id} className={`rounded-xl border p-5 ${m.color}`}>
-                  <div className="flex items-start justify-between gap-2 mb-2">
-                    <div>
-                      <div className="text-xs font-semibold text-gray-500 mb-0.5">{battle.year}</div>
-                      <h3 className="font-bold text-gray-900 leading-snug">{battle.name}</h3>
-                    </div>
-                    <span className={`flex-shrink-0 text-xs font-semibold px-2 py-1 rounded-full capitalize ${OUTCOME_BADGE[battle.outcome] || "bg-gray-100 text-gray-700"}`}>
-                      {battle.outcome}
-                    </span>
-                  </div>
-
-                  <div className="grid grid-cols-2 gap-2 mb-3 text-xs">
-                    <div>
-                      <span className="text-gray-400">Sikh Commander: </span>
-                      <span className="font-medium text-gray-700">{battle.commander}</span>
-                    </div>
-                    <div>
-                      <span className="text-gray-400">Opponent: </span>
-                      <span className="font-medium text-gray-700">{battle.opponent}</span>
-                    </div>
-                    <div>
-                      <span className="text-gray-400">Location: </span>
-                      <span className="font-medium text-gray-700">{battle.location}</span>
-                    </div>
-                    {battle.casualties && (
-                      <div>
-                        <span className="text-gray-400">Casualties: </span>
-                        <span className="font-medium text-gray-700">{battle.casualties}</span>
+                <StaggerItem key={battle.id}>
+                  <HoverCard>
+                    <article className={`rounded-xl border p-5 ${m.color}`}>
+                      <div className="flex items-start justify-between gap-2 mb-2">
+                        <div>
+                          <div className="text-xs font-semibold text-gray-500 mb-0.5">{battle.year}</div>
+                          <h3 className="font-bold text-gray-900 leading-snug">{battle.name}</h3>
+                        </div>
+                        <span className={`flex-shrink-0 text-xs font-semibold px-2 py-1 rounded-full capitalize ${OUTCOME_BADGE[battle.outcome] || "bg-gray-100 text-gray-700"}`}>
+                          {battle.outcome}
+                        </span>
                       </div>
-                    )}
-                  </div>
 
-                  <p className="text-sm text-gray-700 leading-relaxed mb-2">{battle.description}</p>
+                      <div className="grid grid-cols-2 gap-2 mb-3 text-xs">
+                        <div>
+                          <span className="text-gray-400">Sikh Commander: </span>
+                          <span className="font-medium text-gray-700">{battle.commander}</span>
+                        </div>
+                        <div>
+                          <span className="text-gray-400">Opponent: </span>
+                          <span className="font-medium text-gray-700">{battle.opponent}</span>
+                        </div>
+                        <div>
+                          <span className="text-gray-400">Location: </span>
+                          <span className="font-medium text-gray-700">{battle.location}</span>
+                        </div>
+                        {battle.casualties && (
+                          <div>
+                            <span className="text-gray-400">Casualties: </span>
+                            <span className="font-medium text-gray-700">{battle.casualties}</span>
+                          </div>
+                        )}
+                      </div>
 
-                  <div className="pt-2 border-t border-current border-opacity-20">
-                    <p className="text-xs text-gray-600">
-                      <span className="font-semibold">Significance: </span>
-                      {battle.significance}
-                    </p>
-                  </div>
-                </article>
+                      <p className="text-sm text-gray-700 leading-relaxed mb-2">{battle.description}</p>
+
+                      <div className="pt-2 border-t border-current border-opacity-20">
+                        <p className="text-xs text-gray-600">
+                          <span className="font-semibold">Significance: </span>
+                          {battle.significance}
+                        </p>
+                      </div>
+                    </article>
+                  </HoverCard>
+                </StaggerItem>
               ))}
-            </div>
+            </StaggerContainer>
           </section>
         );
       })}
 
       {/* Saragarhi callout */}
+      <FadeIn>
       <div className="mt-4 bg-gradient-to-br from-amber-800 to-red-900 text-white rounded-2xl p-6 sm:p-8">
         <h2 className="text-2xl font-bold mb-3">Battle of Saragarhi — September 12, 1897</h2>
         <p className="text-amber-100 leading-relaxed mb-3">
@@ -144,6 +156,7 @@ export default function BattlesPage() {
           UNESCO as one of the eight most heroic last stands in military history.
         </p>
       </div>
+      </FadeIn>
     </div>
   );
 }

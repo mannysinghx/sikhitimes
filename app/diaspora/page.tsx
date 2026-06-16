@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { SIKH_STATS, SIKH_FACTS } from "@/data/sikh-facts";
+import { FadeIn, StaggerContainer, StaggerItem, HoverCard } from "@/components/ui/motion";
 
 export const metadata: Metadata = {
   title: "Sikh Diaspora & Global Community",
@@ -96,20 +97,22 @@ export default function DiasporaPage() {
   return (
     <div className="max-w-7xl mx-auto px-4 sm:px-6 py-10">
       {/* Header */}
-      <div className="text-center mb-10">
-        <div className="text-5xl mb-3">🌍</div>
-        <h1 className="text-3xl sm:text-4xl font-bold text-gray-900 mb-3">
-          Sikh Diaspora & Global Community
-        </h1>
-        <p className="text-gray-600 max-w-2xl mx-auto leading-relaxed">
-          With ~30 million Sikhs worldwide, the Sikh diaspora has built thriving communities across
-          every continent. Known for their work ethic, service to others, and distinctive identity,
-          Sikhs have become an integral part of societies worldwide.
-        </p>
-      </div>
+      <FadeIn>
+        <div className="text-center mb-10">
+          <div className="text-5xl mb-3">🌍</div>
+          <h1 className="text-3xl sm:text-4xl font-bold text-gray-900 mb-3">
+            Sikh Diaspora & Global Community
+          </h1>
+          <p className="text-gray-600 max-w-2xl mx-auto leading-relaxed">
+            With ~30 million Sikhs worldwide, the Sikh diaspora has built thriving communities across
+            every continent. Known for their work ethic, service to others, and distinctive identity,
+            Sikhs have become an integral part of societies worldwide.
+          </p>
+        </div>
+      </FadeIn>
 
       {/* Global stats */}
-      <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-3 mb-10">
+      <StaggerContainer className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-3 mb-10">
         {[
           { label: "Worldwide Sikhs", value: SIKH_STATS.worldwideSikhs, icon: "🌍" },
           { label: "In India", value: SIKH_STATS.inIndia, icon: "🇮🇳" },
@@ -118,54 +121,65 @@ export default function DiasporaPage() {
           { label: "In USA", value: SIKH_STATS.inUSA, icon: "🇺🇸" },
           { label: "In Australia", value: SIKH_STATS.inAustralia, icon: "🇦🇺" },
         ].map(({ label, value, icon }) => (
-          <div key={label} className="bg-white rounded-xl border border-gray-100 shadow-sm p-4 text-center">
-            <div className="text-2xl mb-1">{icon}</div>
-            <div className="text-lg font-bold text-amber-800">{value}</div>
-            <div className="text-xs text-gray-500">{label}</div>
-          </div>
+          <StaggerItem key={label}>
+            <div className="bg-white rounded-xl border border-gray-100 shadow-sm p-4 text-center">
+              <div className="text-2xl mb-1">{icon}</div>
+              <div className="text-lg font-bold text-amber-800">{value}</div>
+              <div className="text-xs text-gray-500">{label}</div>
+            </div>
+          </StaggerItem>
         ))}
-      </div>
+      </StaggerContainer>
 
       {/* Country cards */}
       <h2 className="text-2xl font-bold text-gray-900 mb-5">Sikh Communities Around the World</h2>
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-5 mb-10">
+      <StaggerContainer className="grid grid-cols-1 lg:grid-cols-2 gap-5 mb-10">
         {DIASPORA_COUNTRIES.map(c => (
-          <article key={c.country} className={`rounded-xl border p-5 ${c.color}`}>
-            <div className="flex items-center gap-3 mb-3">
-              <span className="text-3xl">{c.flag}</span>
-              <div>
-                <h3 className="font-bold text-gray-900 text-lg">{c.country}</h3>
-                <p className="text-sm text-gray-500">{c.population} · {c.percentage}</p>
-              </div>
-            </div>
-            <p className="text-sm text-gray-700 leading-relaxed mb-3">{c.fact}</p>
-            <div className="space-y-1.5 text-xs text-gray-600">
-              <div><span className="font-semibold">Major cities: </span>{c.cities}</div>
-              <div><span className="font-semibold">Notable Sikhs: </span>{c.notable}</div>
-            </div>
-          </article>
+          <StaggerItem key={c.country}>
+            <HoverCard>
+              <article className={`rounded-xl border p-5 ${c.color}`}>
+                <div className="flex items-center gap-3 mb-3">
+                  <span className="text-3xl">{c.flag}</span>
+                  <div>
+                    <h3 className="font-bold text-gray-900 text-lg">{c.country}</h3>
+                    <p className="text-sm text-gray-500">{c.population} · {c.percentage}</p>
+                  </div>
+                </div>
+                <p className="text-sm text-gray-700 leading-relaxed mb-3">{c.fact}</p>
+                <div className="space-y-1.5 text-xs text-gray-600">
+                  <div><span className="font-semibold">Major cities: </span>{c.cities}</div>
+                  <div><span className="font-semibold">Notable Sikhs: </span>{c.notable}</div>
+                </div>
+              </article>
+            </HoverCard>
+          </StaggerItem>
         ))}
-      </div>
+      </StaggerContainer>
 
       {/* Remarkable facts */}
       <section className="mb-10">
-        <h2 className="text-2xl font-bold text-gray-900 mb-5">Remarkable Sikh Facts</h2>
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+        <FadeIn>
+          <h2 className="text-2xl font-bold text-gray-900 mb-5">Remarkable Sikh Facts</h2>
+        </FadeIn>
+        <StaggerContainer className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
           {SIKH_FACTS.slice(0, 12).map(fact => (
-            <div key={fact.id} className="bg-white rounded-xl border border-gray-100 shadow-sm p-4">
-              <div className="flex items-start gap-2 mb-2">
-                <span className="text-xs font-bold px-2 py-0.5 rounded-full bg-amber-100 text-amber-800 flex-shrink-0">
-                  {fact.category}
-                </span>
+            <StaggerItem key={fact.id}>
+              <div className="bg-white rounded-xl border border-gray-100 shadow-sm p-4">
+                <div className="flex items-start gap-2 mb-2">
+                  <span className="text-xs font-bold px-2 py-0.5 rounded-full bg-amber-100 text-amber-800 flex-shrink-0">
+                    {fact.category}
+                  </span>
+                </div>
+                <p className="font-semibold text-gray-900 text-sm mb-1">{fact.fact}</p>
+                <p className="text-xs text-gray-500 leading-relaxed">{fact.detail}</p>
               </div>
-              <p className="font-semibold text-gray-900 text-sm mb-1">{fact.fact}</p>
-              <p className="text-xs text-gray-500 leading-relaxed">{fact.detail}</p>
-            </div>
+            </StaggerItem>
           ))}
-        </div>
+        </StaggerContainer>
       </section>
 
       {/* Service tradition */}
+      <FadeIn>
       <div className="bg-amber-700 text-white rounded-2xl p-6 sm:p-8">
         <h2 className="text-xl font-bold mb-3">Seva — A Global Tradition of Service</h2>
         <p className="text-amber-100 leading-relaxed mb-4">
@@ -187,6 +201,7 @@ export default function DiasporaPage() {
           ))}
         </div>
       </div>
+      </FadeIn>
     </div>
   );
 }

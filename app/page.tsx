@@ -4,6 +4,7 @@ import { SIKH_GURUS } from "@/data/gurus";
 import { SIKH_HISTORY } from "@/data/history";
 import { NOTABLE_SIKHS } from "@/data/notable-sikhs";
 import { SIKH_STATS } from "@/data/sikh-facts";
+import { FadeIn, SlideIn, StaggerContainer, StaggerItem, HoverCard, Float, AnimatedNumber, ScaleIn } from "@/components/ui/motion";
 
 // Quick stats for hero
 const HERO_STATS = [
@@ -117,28 +118,28 @@ export default function HomePage() {
       <section className="bg-gradient-to-br from-amber-800 via-amber-700 to-orange-700 text-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 py-14 sm:py-20">
           <div className="text-center">
-            <div className="text-7xl mb-4">☬</div>
-            <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold mb-3 tracking-tight">
+            <Float><div className="text-7xl mb-4">☬</div></Float>
+            <FadeIn delay={0.1}><h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold mb-3 tracking-tight">
               <span className="text-amber-200">Sikhi</span>Times
-            </h1>
-            <p className="text-lg sm:text-xl text-amber-100 max-w-2xl mx-auto mb-1 leading-relaxed">
+            </h1></FadeIn>
+            <FadeIn delay={0.2}><p className="text-lg sm:text-xl text-amber-100 max-w-2xl mx-auto mb-1 leading-relaxed">
               Your neutral, research-based home for everything Sikh.
             </p>
             <p className="text-sm text-amber-300 mb-8">
               550+ years of history · 30 million Sikhs · One platform
-            </p>
+            </p></FadeIn>
 
             {/* Hero stats */}
-            <div className="flex flex-wrap justify-center gap-4 mb-8">
+            <StaggerContainer className="flex flex-wrap justify-center gap-4 mb-8">
               {HERO_STATS.map(({ label, value }) => (
-                <div key={label} className="bg-white/15 rounded-xl px-5 py-3 text-center min-w-[90px]">
-                  <div className="text-2xl font-bold text-white">{value}</div>
+                <StaggerItem key={label} className="bg-white/15 rounded-xl px-5 py-3 text-center min-w-[90px]">
+                  <AnimatedNumber value={value} className="text-2xl font-bold text-white" />
                   <div className="text-xs text-amber-200">{label}</div>
-                </div>
+                </StaggerItem>
               ))}
-            </div>
+            </StaggerContainer>
 
-            <div className="flex flex-wrap gap-3 justify-center">
+            <FadeIn delay={0.4}><div className="flex flex-wrap gap-3 justify-center">
               <Link href="/news" className="flex items-center gap-2 px-6 py-3 bg-white text-amber-800 font-semibold rounded-xl hover:bg-amber-50 transition-colors">
                 Today&apos;s News <ArrowRight size={16} />
               </Link>
@@ -148,7 +149,7 @@ export default function HomePage() {
               <Link href="/darshan" className="flex items-center gap-2 px-6 py-3 border-2 border-amber-300 text-white font-semibold rounded-xl hover:bg-amber-800 transition-colors">
                 Live Darshan <Video size={16} />
               </Link>
-            </div>
+            </div></FadeIn>
           </div>
         </div>
         <div className="w-full overflow-hidden leading-none">
@@ -162,14 +163,14 @@ export default function HomePage() {
       <section className="bg-gray-900 text-white py-8 overflow-hidden">
         <div className="max-w-5xl mx-auto px-4 sm:px-6">
           <p className="text-xs text-gray-400 text-center uppercase tracking-widest mb-4">Mool Mantar — The Core of Sikh Belief</p>
-          <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-3 text-center">
+          <StaggerContainer className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-3 text-center">
             {MOOL_MANTAR_LINES.map(({ gu, en }) => (
-              <div key={gu} className="bg-white/5 rounded-xl p-3">
+              <StaggerItem key={gu} className="bg-white/5 rounded-xl p-3">
                 <p className="text-base font-medium text-amber-300 mb-1" lang="pa">{gu}</p>
                 <p className="text-xs text-gray-400 leading-snug">{en}</p>
-              </div>
+              </StaggerItem>
             ))}
-          </div>
+          </StaggerContainer>
         </div>
       </section>
 
@@ -177,7 +178,7 @@ export default function HomePage() {
       <section className="max-w-7xl mx-auto px-4 sm:px-6 py-10">
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
           {/* Guru of the day */}
-          <div className="lg:col-span-1 bg-gradient-to-br from-amber-700 to-orange-700 text-white rounded-2xl p-6">
+          <SlideIn from="left" className="lg:col-span-1 bg-gradient-to-br from-amber-700 to-orange-700 text-white rounded-2xl p-6">
             <p className="text-amber-200 text-xs font-semibold uppercase tracking-wide mb-3">Guru of the Day</p>
             <div className="flex items-center gap-3 mb-4">
               <div className="w-12 h-12 rounded-full bg-white/20 flex items-center justify-center text-2xl font-bold">
@@ -197,10 +198,10 @@ export default function HomePage() {
             <Link href={`/gurus/${featuredGuru.id}`} className="inline-flex items-center gap-1 text-xs font-semibold text-white bg-white/20 hover:bg-white/30 px-3 py-1.5 rounded-lg transition-colors">
               Full Profile <ArrowRight size={12} />
             </Link>
-          </div>
+          </SlideIn>
 
           {/* Historical event + Notable Sikh */}
-          <div className="lg:col-span-2 grid grid-cols-1 sm:grid-cols-2 gap-4">
+          <SlideIn from="right" className="lg:col-span-2 grid grid-cols-1 sm:grid-cols-2 gap-4">
             {/* Historical event */}
             <div className="bg-purple-50 border border-purple-200 rounded-2xl p-5">
               <p className="text-purple-600 text-xs font-semibold uppercase tracking-wide mb-2">From Sikh History</p>
@@ -248,7 +249,7 @@ export default function HomePage() {
                 ))}
               </div>
             </div>
-          </div>
+          </SlideIn>
         </div>
       </section>
 
@@ -256,17 +257,19 @@ export default function HomePage() {
       <section className="max-w-7xl mx-auto px-4 sm:px-6 pb-10">
         <h2 className="text-2xl font-bold text-gray-900 mb-2">Everything on SikhiTimes</h2>
         <p className="text-gray-500 text-sm mb-6">{SECTIONS.length} sections packed with Sikh knowledge, news, and community</p>
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 gap-3">
+        <StaggerContainer className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 gap-3">
           {SECTIONS.map(({ href, icon: Icon, title, desc, color, iconColor }) => (
-            <Link key={href} href={href} className="group">
-              <div className={`h-full rounded-xl border p-4 ${color} hover:shadow-md transition-shadow`}>
-                <Icon className={`mb-2 ${iconColor}`} size={20} />
-                <h3 className="font-bold text-gray-900 text-sm mb-1 group-hover:text-amber-800 transition-colors">{title}</h3>
-                <p className="text-xs text-gray-500 leading-relaxed">{desc}</p>
-              </div>
-            </Link>
+            <StaggerItem key={href}>
+              <Link href={href} className="group">
+                <HoverCard className={`h-full rounded-xl border p-4 ${color} hover:shadow-md transition-shadow`}>
+                  <Icon className={`mb-2 ${iconColor}`} size={20} />
+                  <h3 className="font-bold text-gray-900 text-sm mb-1 group-hover:text-amber-800 transition-colors">{title}</h3>
+                  <p className="text-xs text-gray-500 leading-relaxed">{desc}</p>
+                </HoverCard>
+              </Link>
+            </StaggerItem>
           ))}
-        </div>
+        </StaggerContainer>
       </section>
 
       {/* ── SIKH GURUS STRIP ── */}
@@ -278,17 +281,19 @@ export default function HomePage() {
               All Gurus <ArrowRight size={13} />
             </Link>
           </div>
-          <div className="grid grid-cols-2 sm:grid-cols-5 lg:grid-cols-10 gap-2">
+          <StaggerContainer className="grid grid-cols-2 sm:grid-cols-5 lg:grid-cols-10 gap-2">
             {SIKH_GURUS.map(guru => (
-              <Link key={guru.id} href={`/gurus/${guru.id}`} className="group text-center">
-                <div className="w-10 h-10 rounded-full bg-white/20 group-hover:bg-white/30 transition-colors flex items-center justify-center text-lg font-bold mx-auto mb-1">
-                  {guru.id}
-                </div>
-                <p className="text-xs text-amber-100 leading-tight">{guru.name.replace("Guru ", "").replace(" Ji", "")}</p>
-                <p className="text-xs text-amber-300 mt-0.5 opacity-70">{guru.gurushipStart}–{guru.gurushipEnd}</p>
-              </Link>
+              <StaggerItem key={guru.id}>
+                <Link href={`/gurus/${guru.id}`} className="group text-center">
+                  <div className="w-10 h-10 rounded-full bg-white/20 group-hover:bg-white/30 transition-colors flex items-center justify-center text-lg font-bold mx-auto mb-1">
+                    {guru.id}
+                  </div>
+                  <p className="text-xs text-amber-100 leading-tight">{guru.name.replace("Guru ", "").replace(" Ji", "")}</p>
+                  <p className="text-xs text-amber-300 mt-0.5 opacity-70">{guru.gurushipStart}–{guru.gurushipEnd}</p>
+                </Link>
+              </StaggerItem>
             ))}
-          </div>
+          </StaggerContainer>
         </div>
       </section>
 
@@ -296,7 +301,7 @@ export default function HomePage() {
       <section className="max-w-7xl mx-auto px-4 sm:px-6 py-10">
         <h2 className="text-2xl font-bold text-gray-900 mb-2 text-center">The Five Pillars of Sikhism</h2>
         <p className="text-gray-500 text-sm text-center mb-6">Core principles taught by Guru Nanak Dev Ji</p>
-        <div className="grid grid-cols-1 sm:grid-cols-3 lg:grid-cols-5 gap-4">
+        <StaggerContainer className="grid grid-cols-1 sm:grid-cols-3 lg:grid-cols-5 gap-4">
           {[
             { pillar: "Nam Japna", gu: "ਨਾਮ ਜਪਣਾ", icon: "🙏", desc: "Meditate on God's name through prayer and devotion (Nitnem)" },
             { pillar: "Kirat Karni", gu: "ਕਿਰਤ ਕਰਨੀ", icon: "⚒️", desc: "Earn an honest living through hard, ethical work" },
@@ -304,32 +309,34 @@ export default function HomePage() {
             { pillar: "Seva", gu: "ਸੇਵਾ", icon: "🤝", desc: "Selfless service to God through service to humanity" },
             { pillar: "Sangat & Pangat", gu: "ਸੰਗਤ ਤੇ ਪੰਗਤ", icon: "👥", desc: "Holy congregation and sitting together equally to eat Langar" },
           ].map(({ pillar, gu, icon, desc }) => (
-            <div key={pillar} className="bg-white rounded-xl border border-gray-100 shadow-sm p-5 text-center">
-              <div className="text-3xl mb-2">{icon}</div>
-              <h3 className="font-bold text-gray-900 text-sm mb-0.5">{pillar}</h3>
-              <p className="text-xs text-amber-700 font-medium mb-2">{gu}</p>
-              <p className="text-xs text-gray-500 leading-relaxed">{desc}</p>
-            </div>
+            <StaggerItem key={pillar}>
+              <HoverCard className="bg-white rounded-xl border border-gray-100 shadow-sm p-5 text-center">
+                <div className="text-3xl mb-2">{icon}</div>
+                <h3 className="font-bold text-gray-900 text-sm mb-0.5">{pillar}</h3>
+                <p className="text-xs text-amber-700 font-medium mb-2">{gu}</p>
+                <p className="text-xs text-gray-500 leading-relaxed">{desc}</p>
+              </HoverCard>
+            </StaggerItem>
           ))}
-        </div>
+        </StaggerContainer>
       </section>
 
       {/* ── QUICK FACTS TICKER ── */}
       <section className="bg-gray-900 text-white py-6">
         <div className="max-w-7xl mx-auto px-4 sm:px-6">
           <p className="text-xs text-gray-400 uppercase tracking-widest text-center mb-4">Did You Know?</p>
-          <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 text-sm text-gray-300">
+          <StaggerContainer className="grid grid-cols-1 sm:grid-cols-3 gap-4 text-sm text-gray-300">
             {[
               "The Golden Temple in Amritsar is open to people of ALL faiths, 24 hours a day, 365 days a year.",
               "21 Sikh soldiers at the Battle of Saragarhi (1897) held off 10,000+ Afghan tribesmen — their story was presented to the UK Parliament.",
               "Dr. Narinder Singh Kapany, a Sikh scientist, invented fiber optic technology — the foundation of the modern internet.",
             ].map(fact => (
-              <div key={fact} className="bg-white/5 rounded-xl p-4 border border-white/10">
+              <StaggerItem key={fact} className="bg-white/5 rounded-xl p-4 border border-white/10">
                 <span className="text-amber-400 font-bold mr-1">☬</span>
                 {fact}
-              </div>
+              </StaggerItem>
             ))}
-          </div>
+          </StaggerContainer>
         </div>
       </section>
 

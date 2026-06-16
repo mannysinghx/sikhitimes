@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { SIKH_FESTIVALS } from "@/data/festivals";
+import { FadeIn, StaggerContainer, StaggerItem, HoverCard } from "@/components/ui/motion";
 
 export const metadata: Metadata = {
   title: "Sikh Festivals & Gurpurabs",
@@ -20,87 +21,103 @@ export default function FestivalsPage() {
   return (
     <div className="max-w-7xl mx-auto px-4 sm:px-6 py-10">
       {/* Header */}
-      <div className="text-center mb-10">
-        <h1 className="text-3xl sm:text-4xl font-bold text-gray-900 mb-3">
-          Sikh Festivals & Gurpurabs
-        </h1>
-        <p className="text-gray-600 max-w-2xl mx-auto leading-relaxed">
-          Gurpurabs are sacred anniversaries marking the birth or martyrdom of the Sikh Gurus.
-          Alongside major festivals, they fill the Sikh calendar with celebration, remembrance, and devotion.
-        </p>
-      </div>
+      <FadeIn>
+        <div className="text-center mb-10">
+          <h1 className="text-3xl sm:text-4xl font-bold text-gray-900 mb-3">
+            Sikh Festivals & Gurpurabs
+          </h1>
+          <p className="text-gray-600 max-w-2xl mx-auto leading-relaxed">
+            Gurpurabs are sacred anniversaries marking the birth or martyrdom of the Sikh Gurus.
+            Alongside major festivals, they fill the Sikh calendar with celebration, remembrance, and devotion.
+          </p>
+        </div>
+      </FadeIn>
 
       {/* Vaisakhi featured */}
-      {SIKH_FESTIVALS.filter(f => f.name === "Vaisakhi").map(festival => {
-        const style = TYPE_STYLE[festival.type];
-        return (
-          <div key={festival.id} className="bg-gradient-to-br from-amber-700 to-orange-600 text-white rounded-2xl p-6 sm:p-8 mb-8">
-            <div className="flex items-center gap-3 mb-4">
-              <span className="text-5xl">🌾</span>
-              <div>
-                <p className="text-amber-200 text-sm font-medium">{festival.date} · Featured Festival</p>
-                <h2 className="text-2xl sm:text-3xl font-bold">{festival.name}</h2>
-                <p className="text-amber-200 text-lg">{festival.nameGurmukhi}</p>
+      <FadeIn delay={0.1}>
+        {SIKH_FESTIVALS.filter(f => f.name === "Vaisakhi").map(festival => {
+          const style = TYPE_STYLE[festival.type];
+          return (
+            <div key={festival.id} className="bg-gradient-to-br from-amber-700 to-orange-600 text-white rounded-2xl p-6 sm:p-8 mb-8">
+              <div className="flex items-center gap-3 mb-4">
+                <span className="text-5xl">🌾</span>
+                <div>
+                  <p className="text-amber-200 text-sm font-medium">{festival.date} · Featured Festival</p>
+                  <h2 className="text-2xl sm:text-3xl font-bold">{festival.name}</h2>
+                  <p className="text-amber-200 text-lg">{festival.nameGurmukhi}</p>
+                </div>
+              </div>
+              <p className="text-amber-100 leading-relaxed mb-3 text-base">{festival.description}</p>
+              <div className="bg-white/10 rounded-xl p-4 mt-3">
+                <p className="text-amber-200 text-sm font-semibold mb-1">How it&apos;s celebrated:</p>
+                <p className="text-white text-sm leading-relaxed">{festival.howCelebrated}</p>
               </div>
             </div>
-            <p className="text-amber-100 leading-relaxed mb-3 text-base">{festival.description}</p>
-            <div className="bg-white/10 rounded-xl p-4 mt-3">
-              <p className="text-amber-200 text-sm font-semibold mb-1">How it&apos;s celebrated:</p>
-              <p className="text-white text-sm leading-relaxed">{festival.howCelebrated}</p>
-            </div>
-          </div>
-        );
-      })}
+          );
+        })}
+      </FadeIn>
 
       {/* Other major festivals */}
-      <h2 className="text-xl font-bold text-gray-900 mb-4">Major Festivals</h2>
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 mb-10">
+      <FadeIn>
+        <h2 className="text-xl font-bold text-gray-900 mb-4">Major Festivals</h2>
+      </FadeIn>
+      <StaggerContainer className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 mb-10">
         {others.map(festival => {
           const style = TYPE_STYLE[festival.type] || TYPE_STYLE.religious;
           return (
-            <article key={festival.id} className={`rounded-xl border p-5 ${style.bg}`}>
-              <div className="flex items-start justify-between gap-2 mb-3">
-                <span className="text-2xl">{style.icon}</span>
-                <span className={`text-xs font-semibold px-2 py-0.5 rounded-full capitalize ${style.badge}`}>
-                  {festival.type.replace("-", " ")}
-                </span>
-              </div>
-              <h3 className="font-bold text-gray-900 mb-0.5">{festival.name}</h3>
-              <p className="text-sm text-amber-700 font-medium mb-1">{festival.nameGurmukhi}</p>
-              <p className="text-xs text-gray-500 mb-3 font-medium">{festival.date}</p>
-              <p className="text-sm text-gray-600 leading-relaxed mb-3">{festival.description}</p>
-              <div className="pt-3 border-t border-gray-200">
-                <p className="text-xs font-semibold text-gray-700 mb-0.5">Celebrations:</p>
-                <p className="text-xs text-gray-500 leading-relaxed">{festival.howCelebrated}</p>
-              </div>
-              {festival.relatedGuru && (
-                <p className="text-xs text-amber-700 font-medium mt-2">Related: {festival.relatedGuru}</p>
-              )}
-            </article>
+            <StaggerItem key={festival.id}>
+              <HoverCard>
+                <article className={`rounded-xl border p-5 ${style.bg}`}>
+                  <div className="flex items-start justify-between gap-2 mb-3">
+                    <span className="text-2xl">{style.icon}</span>
+                    <span className={`text-xs font-semibold px-2 py-0.5 rounded-full capitalize ${style.badge}`}>
+                      {festival.type.replace("-", " ")}
+                    </span>
+                  </div>
+                  <h3 className="font-bold text-gray-900 mb-0.5">{festival.name}</h3>
+                  <p className="text-sm text-amber-700 font-medium mb-1">{festival.nameGurmukhi}</p>
+                  <p className="text-xs text-gray-500 mb-3 font-medium">{festival.date}</p>
+                  <p className="text-sm text-gray-600 leading-relaxed mb-3">{festival.description}</p>
+                  <div className="pt-3 border-t border-gray-200">
+                    <p className="text-xs font-semibold text-gray-700 mb-0.5">Celebrations:</p>
+                    <p className="text-xs text-gray-500 leading-relaxed">{festival.howCelebrated}</p>
+                  </div>
+                  {festival.relatedGuru && (
+                    <p className="text-xs text-amber-700 font-medium mt-2">Related: {festival.relatedGuru}</p>
+                  )}
+                </article>
+              </HoverCard>
+            </StaggerItem>
           );
         })}
-      </div>
+      </StaggerContainer>
 
       {/* Gurpurabs */}
-      <h2 className="text-xl font-bold text-gray-900 mb-4">Gurpurabs — Guru Anniversaries</h2>
-      <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+      <FadeIn>
+        <h2 className="text-xl font-bold text-gray-900 mb-4">Gurpurabs — Guru Anniversaries</h2>
+      </FadeIn>
+      <StaggerContainer className="grid grid-cols-1 sm:grid-cols-2 gap-4">
         {gurpurabs.filter(f => f.name !== "Vaisakhi").map(festival => (
-          <article key={festival.id} className="bg-white rounded-xl border border-amber-100 shadow-sm p-5">
-            <div className="flex items-start gap-3 mb-3">
-              <div className="w-10 h-10 rounded-full bg-amber-100 flex items-center justify-center text-xl flex-shrink-0">
-                ☬
-              </div>
-              <div>
-                <h3 className="font-bold text-gray-900 leading-tight">{festival.name}</h3>
-                <p className="text-xs text-amber-700 font-medium">{festival.nameGurmukhi}</p>
-                <p className="text-xs text-gray-400 mt-0.5">{festival.date}</p>
-              </div>
-            </div>
-            <p className="text-sm text-gray-600 leading-relaxed mb-2">{festival.significance}</p>
-            <p className="text-xs text-gray-500 leading-relaxed">{festival.howCelebrated}</p>
-          </article>
+          <StaggerItem key={festival.id}>
+            <HoverCard>
+              <article className="bg-white rounded-xl border border-amber-100 shadow-sm p-5">
+                <div className="flex items-start gap-3 mb-3">
+                  <div className="w-10 h-10 rounded-full bg-amber-100 flex items-center justify-center text-xl flex-shrink-0">
+                    ☬
+                  </div>
+                  <div>
+                    <h3 className="font-bold text-gray-900 leading-tight">{festival.name}</h3>
+                    <p className="text-xs text-amber-700 font-medium">{festival.nameGurmukhi}</p>
+                    <p className="text-xs text-gray-400 mt-0.5">{festival.date}</p>
+                  </div>
+                </div>
+                <p className="text-sm text-gray-600 leading-relaxed mb-2">{festival.significance}</p>
+                <p className="text-xs text-gray-500 leading-relaxed">{festival.howCelebrated}</p>
+              </article>
+            </HoverCard>
+          </StaggerItem>
         ))}
-      </div>
+      </StaggerContainer>
 
       {/* How Gurpurabs are observed */}
       <div className="mt-10 bg-amber-50 border border-amber-200 rounded-2xl p-6">
