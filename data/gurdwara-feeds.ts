@@ -18,7 +18,7 @@ export const GURDWARA_FEEDS: GurdwaraFeedData[] = [
     location: "Amritsar, Punjab",
     country: "India",
     description: "The holiest shrine in Sikhism — a 24/7 live stream from the SGPC.",
-    youtubeUrl: "https://www.youtube.com/watch?v=9Cs4E-nZmEw",
+    youtubeUrl: "https://www.youtube.com/watch?v=qHhFWlrg-I0",
     youtubeChannelUrl: "https://www.youtube.com/@SGPCofficial/streams",
     thumbnail: "/feeds/golden-temple.jpg",
   },
