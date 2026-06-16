@@ -13,6 +13,7 @@ const CATEGORY_STYLES: Record<string, { bg: string; dot: string; label: string }
   institution: { bg: "bg-blue-50 border-blue-200", dot: "bg-blue-500", label: "Institution" },
   modern: { bg: "bg-gray-50 border-gray-200", dot: "bg-gray-500", label: "Modern Era" },
   diaspora: { bg: "bg-teal-50 border-teal-200", dot: "bg-teal-500", label: "Diaspora" },
+  persecution: { bg: "bg-orange-50 border-orange-200", dot: "bg-orange-600", label: "Persecution" },
 };
 
 export default function HistoryPage() {
