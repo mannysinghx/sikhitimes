@@ -296,7 +296,7 @@ export default function HomePage() {
       <section className="max-w-7xl mx-auto px-4 sm:px-6 py-10">
         <h2 className="text-2xl font-bold text-gray-900 mb-2 text-center">The Five Pillars of Sikhism</h2>
         <p className="text-gray-500 text-sm text-center mb-6">Core principles taught by Guru Nanak Dev Ji</p>
-        <div className="grid grid-cols-1 sm:grid-cols-5 gap-4">
+        <div className="grid grid-cols-1 sm:grid-cols-3 lg:grid-cols-5 gap-4">
           {[
             { pillar: "Nam Japna", gu: "ਨਾਮ ਜਪਣਾ", icon: "🙏", desc: "Meditate on God's name through prayer and devotion (Nitnem)" },
             { pillar: "Kirat Karni", gu: "ਕਿਰਤ ਕਰਨੀ", icon: "⚒️", desc: "Earn an honest living through hard, ethical work" },

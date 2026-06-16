@@ -61,18 +61,18 @@ export default function CommunityPage() {
         </div>
       ) : (
         /* Community layout */
-        <div className="flex gap-0 h-[calc(100vh-220px)] min-h-[500px] bg-white rounded-2xl border border-gray-200 overflow-hidden shadow-sm">
+        <div className="flex flex-col md:flex-row gap-0 h-[calc(100vh-220px)] min-h-[500px] bg-white rounded-2xl border border-gray-200 overflow-hidden shadow-sm">
           {/* Sidebar — channels */}
-          <div className="w-56 border-r border-gray-100 bg-gray-50 flex flex-col flex-shrink-0">
-            <div className="p-3 border-b border-gray-100">
+          <div className="md:w-56 border-b md:border-b-0 md:border-r border-gray-100 bg-gray-50 flex flex-col flex-shrink-0 max-h-24 md:max-h-none">
+            <div className="hidden md:block p-3 border-b border-gray-100">
               <p className="text-xs font-bold text-gray-500 uppercase tracking-wide px-1">Channels</p>
             </div>
-            <div className="flex-1 overflow-y-auto p-2 space-y-0.5">
+            <div className="flex md:flex-col gap-1 overflow-x-auto md:overflow-y-auto p-2 md:space-y-0.5">
               {DEFAULT_CHANNELS.map((channel) => (
                 <button
                   key={channel.id}
                   onClick={() => setActiveChannel(channel)}
-                  className={`w-full flex items-center gap-2 px-3 py-2 rounded-lg text-sm text-left transition-colors ${
+                  className={`flex-shrink-0 md:w-full flex items-center gap-2 px-3 py-2 rounded-lg text-sm text-left transition-colors ${
                     activeChannel.id === channel.id
                       ? "bg-amber-100 text-amber-800 font-medium"
                       : "text-gray-700 hover:bg-gray-100"

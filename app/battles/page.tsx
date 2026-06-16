@@ -80,7 +80,7 @@ export default function BattlesPage() {
             <div className="flex items-center gap-3 mb-4">
               <span className={`w-3 h-3 rounded-full ${m.dotColor}`} />
               <h2 className="text-xl font-bold text-gray-900">{m.label}</h2>
-              <span className="text-sm text-gray-400">— {m.desc}</span>
+              <span className="hidden sm:inline text-sm text-gray-400">— {m.desc}</span>
             </div>
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
               {battles.map(battle => (
