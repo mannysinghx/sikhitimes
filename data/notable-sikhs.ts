@@ -1,0 +1,143 @@
+export interface NotableSikh {
+  id: string;
+  name: string;
+  field: string;
+  nationality: string;
+  born?: string;
+  achievement: string;
+  description: string;
+  imageUrl?: string;
+  tags: string[];
+}
+
+export const NOTABLE_SIKHS: NotableSikh[] = [
+  {
+    id: "manmohan-singh",
+    name: "Dr. Manmohan Singh",
+    field: "Politics / Economics",
+    nationality: "Indian",
+    born: "1932",
+    achievement: "14th Prime Minister of India (2004-2014)",
+    description: "Manmohan Singh served as Prime Minister of India for a decade and is widely credited with liberalizing India's economy in 1991 as Finance Minister, transforming it into a global powerhouse.",
+    tags: ["politics", "economics", "india", "prime minister"],
+  },
+  {
+    id: "harnaaz-sandhu",
+    name: "Harnaaz Sandhu",
+    field: "Beauty / Entertainment",
+    nationality: "Indian",
+    born: "2000",
+    achievement: "Miss Universe 2021",
+    description: "Harnaaz Kaur Sandhu from Chandigarh, Punjab, became Miss Universe 2021 — ending India's 21-year wait for the title. She is a proud Punjabi who credits her confidence to her Sikh upbringing.",
+    tags: ["beauty", "entertainment", "india", "punjab"],
+  },
+  {
+    id: "navdeep-bains",
+    name: "Navdeep Bains",
+    field: "Politics",
+    nationality: "Canadian",
+    born: "1977",
+    achievement: "Former Canadian Cabinet Minister, Innovation & Industry",
+    description: "Navdeep Bains served as a senior minister in Justin Trudeau's cabinet, responsible for Innovation, Science and Industry. A prominent member of Canada's thriving Sikh community.",
+    tags: ["politics", "canada", "government"],
+  },
+  {
+    id: "jagmeet-singh",
+    name: "Jagmeet Singh",
+    field: "Politics",
+    nationality: "Canadian",
+    born: "1979",
+    achievement: "Leader of Canada's New Democratic Party (NDP)",
+    description: "Jagmeet Singh made history as the first person of a visible minority to lead a major federal political party in Canada. Known for his passion for social justice, healthcare, and workers' rights, he is an iconic figure in Canadian politics.",
+    tags: ["politics", "canada", "ndp", "turban"],
+  },
+  {
+    id: "milkha-singh",
+    name: "Milkha Singh",
+    field: "Athletics",
+    nationality: "Indian",
+    born: "1929",
+    achievement: "The Flying Sikh — Commonwealth Games gold medalist, 4x Asian Games champion",
+    description: "Milkha Singh overcame the trauma of the 1947 Partition to become India's greatest sprinter. Known as 'The Flying Sikh,' he won gold at the 1958 Commonwealth Games and came agonizingly close to a medal at the 1960 Rome Olympics.",
+    tags: ["sports", "athletics", "india", "running"],
+  },
+  {
+    id: "harbhajan-singh",
+    name: "Harbhajan Singh",
+    field: "Cricket",
+    nationality: "Indian",
+    born: "1980",
+    achievement: "Indian cricket legend, 700+ international wickets",
+    description: "Harbhajan Singh from Jalandhar, Punjab, is one of India's greatest off-spin bowlers. Known as the 'Turbanator,' he played a key role in India's 2011 World Cup victory and was a match-winner in Test cricket.",
+    tags: ["sports", "cricket", "india", "punjab"],
+  },
+  {
+    id: "fauja-singh",
+    name: "Fauja Singh",
+    field: "Athletics",
+    nationality: "British/Indian",
+    born: "1911",
+    achievement: "Oldest marathon runner in the world (completed marathon at age 100+)",
+    description: "Fauja Singh, the 'Turbaned Tornado,' began running marathons at age 89 after tragedy struck his life. He became a symbol of resilience, completing marathons well into his 100s and being the first 100-year-old to finish a marathon.",
+    tags: ["sports", "running", "inspiration", "record"],
+  },
+  {
+    id: "nikki-haley",
+    name: "Nikki Haley",
+    field: "Politics",
+    nationality: "American",
+    born: "1972",
+    achievement: "Former US Ambassador to the UN, Governor of South Carolina",
+    description: "Nimrata Nikki Randhawa Haley is the daughter of Sikh immigrants from Amritsar. She served as the 116th Governor of South Carolina and as the US Ambassador to the United Nations under President Trump. She ran for the Republican presidential nomination in 2024.",
+    tags: ["politics", "usa", "ambassador", "governor"],
+  },
+  {
+    id: "preet-bharara",
+    name: "Preet Bharara",
+    field: "Law",
+    nationality: "American",
+    born: "1968",
+    achievement: "Former US Attorney for Southern District of New York",
+    description: "Preet Bharara served as one of the most powerful federal prosecutors in US history, known for taking on Wall Street corruption and organized crime. Named one of Time magazine's 100 Most Influential People.",
+    tags: ["law", "usa", "prosecutor", "justice"],
+  },
+  {
+    id: "gurinder-chadha",
+    name: "Gurinder Chadha OBE",
+    field: "Film / Arts",
+    nationality: "British",
+    born: "1960",
+    achievement: "Acclaimed film director — Bend It Like Beckham, Bride & Prejudice",
+    description: "Gurinder Chadha is a BAFTA-winning British-Sikh film director best known for Bend It Like Beckham (2002), which grossed over $76 million worldwide. Her work celebrates South Asian identity and women's empowerment.",
+    tags: ["film", "arts", "uk", "director"],
+  },
+  {
+    id: "lilly-singh",
+    name: "Lilly Singh",
+    field: "Entertainment / Media",
+    nationality: "Canadian",
+    born: "1988",
+    achievement: "YouTube star, NBC late-night host, actress",
+    description: "Lilly Singh (IISuperwomanII) rose from YouTube to become the first woman and first person of South Asian descent to host a major US network late-night show (NBC's A Little Late). A proud Punjabi Sikh, she advocates for women's equality.",
+    tags: ["entertainment", "youtube", "canada", "media"],
+  },
+  {
+    id: "bhai-harbans-singh",
+    name: "Bhai Harbans Singh Jagadhri Wale",
+    field: "Music / Kirtan",
+    nationality: "Indian",
+    achievement: "Legendary Gurbani kirtan singer",
+    description: "Bhai Harbans Singh Ji is revered as one of the greatest Gurbani kirtan singers of the 20th century. His recordings of Sikh prayers and shabads have reached millions of Sikh households worldwide and continue to inspire generations.",
+    tags: ["music", "kirtan", "spirituality", "india"],
+  },
+  {
+    id: "diljit-dosanjh",
+    name: "Diljit Dosanjh",
+    field: "Music / Film",
+    nationality: "Indian",
+    born: "1984",
+    achievement: "Bollywood actor, Punjabi music superstar, first turban-wearing Sikh in Hollywood films",
+    description: "Diljit Dosanjh from Dosanjh Kalan, Punjab, is one of India's biggest entertainment stars. He starred in Udta Punjab and Good Newwz, performed at Coachella (2024), and is beloved worldwide for bringing Punjabi culture to global stages.",
+    tags: ["music", "film", "punjab", "coachella"],
+  },
+];
